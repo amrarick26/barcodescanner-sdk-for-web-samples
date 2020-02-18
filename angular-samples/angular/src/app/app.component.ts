@@ -11,6 +11,7 @@ export class AppComponent {
   public activeSettings: ScanSettings;
   public settings128: ScanSettings;
   public settings39: ScanSettings;
+  public settingsUPCA: ScanSettings;
   public scannerGuiStyle: BarcodePicker.GuiStyle = BarcodePicker.GuiStyle.VIEWFINDER;
   public activeCamera: Camera;
   public cameraSettings: CameraSettings;
@@ -39,7 +40,10 @@ export class AppComponent {
     this.settings39 = new ScanSettings({
       enabledSymbologies: [Barcode.Symbology.CODE39]
     });
-    this.activeSettings = this.settings128;
+    this.settingsUPCA = new ScanSettings({
+      enabledSymbologies: [Barcode.Symbology.UPCA]
+    });
+    this.activeSettings = this.settingsUPCA;
 
     CameraAccess.getCameras().then(cameras => {
       this.possibleCameras = cameras;
@@ -59,6 +63,7 @@ export class AppComponent {
   }
 
   public onScan(result: ScanResult): void {
+    console.log(result);
     this.scannedCodes = this.scannedCodes.concat(result.barcodes);
   }
 }
