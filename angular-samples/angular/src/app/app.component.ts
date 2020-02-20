@@ -43,7 +43,7 @@ export class AppComponent {
     this.settingsUPCA = new ScanSettings({
       enabledSymbologies: [Barcode.Symbology.UPCA]
     });
-    this.activeSettings = this.settingsUPCA;
+    this.activeSettings = this.settings39;
 
     CameraAccess.getCameras().then(cameras => {
       this.possibleCameras = cameras;
